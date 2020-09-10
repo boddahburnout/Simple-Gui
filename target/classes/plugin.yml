@@ -1,0 +1,35 @@
+name: Guitest
+version: 1.0-SNAPSHOT
+main: darth.guitest.Guitest
+api-version: 1.16
+commands:
+  openmenu:
+    description: Open a menu defined in config
+    usage: /openmenu <configpath>
+  createmenu:
+    description: Create a blank menu
+    usage: /createmenu <Menu-Name> <Max-Slots>
+  ItemSet:
+    description: Set item in main hand to a menu slot
+    usage: /itemset <Menu-Name> <Slot>
+  setaction:
+    description: Set an action to a menu slot
+    usage: /setaction <Menu-Name> <Slot> <Action-Type> <Action>
+  setclose:
+    description: Set slot to close after executing action
+    usage: /setclose <Menu-Name> <Slot> <true/false>
+  guireload:
+    description: Reload the gui config
+    usage: /guireload
+  setsize:
+    description: Ajdust the size of a menu
+    usage: /size <Menu-Name> <Size>
+  removeitem:
+    description: Remove an item from a menu
+    usage: /removeitem <Menu-Name> <SLot>
+  removecmd:
+    description: remove a command action from a menu slot
+    usage: /removecmd <Menu-Name> <Slot>
+  setplayerjoin:
+    description: Set a menu to open on player join
+    usage: /setplayerjoin <Menu-Name> <true/false>
