@@ -22,6 +22,9 @@ public class MenuCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("openmenu")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (!sender.hasPermission("Guitest.openmenu")) {
                 sender.sendMessage("You don't have permission to this command");
                 return true;

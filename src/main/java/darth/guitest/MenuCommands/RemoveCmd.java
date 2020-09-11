@@ -22,6 +22,9 @@ public class RemoveCmd implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("removecmd")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 2) {
                 sender.sendMessage("/removecmd <Menu-Name> <Slot>");
                 return true;

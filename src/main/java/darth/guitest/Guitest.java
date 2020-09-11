@@ -2,6 +2,7 @@ package darth.guitest;
 
 import darth.guitest.Event.MenuClick;
 import darth.guitest.MenuCommands.*;
+import darth.guitest.TabComplete.*;
 import darth.guitest.Triggers.PlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
@@ -20,14 +21,22 @@ public final class Guitest extends JavaPlugin implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(new MenuClick(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         this.getCommand("createmenu").setExecutor(new CreateMenu());
+        this.getCommand("createmenu").setTabCompleter(new CreateMenuCompleter());
         this.getCommand("itemset").setExecutor(new ItemSet());
+        this.getCommand("itemset").setTabCompleter(new ItemSetCompleter());
         this.getCommand("setaction").setExecutor(new MenuAction());
+        this.getCommand("setaction").setTabCompleter(new MenuActionCompleter());
         this.getCommand("setclose").setExecutor(new CloseAfterAction());
+        this.getCommand("setclose").setTabCompleter(new CloseAfterActionCompleter());
         this.getCommand("guireload").setExecutor(new ReloadCmd());
         this.getCommand("setsize").setExecutor(new MenuSize());
+        this.getCommand("setsize").setTabCompleter(new MenuSizeCompleter());
         this.getCommand("removeitem").setExecutor(new RemoveItem());
+        this.getCommand("removeitem").setTabCompleter(new RemoveItemCompleter());
         this.getCommand("removecmd").setExecutor(new RemoveCmd());
+        this.getCommand("removecmd").setTabCompleter(new RemoveCmdCompleter());
         this.getCommand("setplayerjoin").setExecutor(new SetPlayerJoin());
+        this.getCommand("setplayerjoin").setTabCompleter(new SetPlayerJoinCompleter());
         try {
             final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             bukkitCommandMap.setAccessible(true);

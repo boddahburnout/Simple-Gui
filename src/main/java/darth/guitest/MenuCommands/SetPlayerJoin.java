@@ -22,14 +22,17 @@ public class SetPlayerJoin implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("setplayerjoin")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 2) {
                 sender.sendMessage("/setplayerjoin <Menu-Name> <true/false>");
                 return true;
             } else {
-                plugin.getConfig().set("Trigger.playerjoin."+args[0], Boolean.parseBoolean(args[1]));
+                plugin.getConfig().set("Trigger.playerjoin." + args[0], Boolean.parseBoolean(args[1]));
                 plugin.saveConfig();
                 plugin.reloadConfig();
-                sender.sendMessage("Playerjoin setting has been set to "+args[1]+" for menu " + args[0]);
+                sender.sendMessage("Playerjoin setting has been set to " + args[1] + " for menu " + args[0]);
                 return true;
             }
         }

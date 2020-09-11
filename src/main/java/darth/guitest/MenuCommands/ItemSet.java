@@ -24,6 +24,9 @@ public class ItemSet implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("itemset")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 1) {
                 sender.sendMessage("/itemset <Menu-Name> <Slot>");
             } else {

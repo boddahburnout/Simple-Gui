@@ -22,6 +22,9 @@ public class MenuAction implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("setaction")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 4) {
                 sender.sendMessage("/setaction <Menu-Name> <Slot> <Action-Type> <Action>");
             } else {

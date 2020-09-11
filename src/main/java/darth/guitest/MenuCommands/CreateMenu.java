@@ -23,6 +23,9 @@ public class CreateMenu implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("createmenu")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 2) {
                 sender.sendMessage("/createmenu <Menu-Name> <Max-Slots>");
                 return true;

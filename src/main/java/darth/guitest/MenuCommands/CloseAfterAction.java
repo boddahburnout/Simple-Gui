@@ -22,6 +22,9 @@ public class CloseAfterAction implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("setclose")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 3) {
                 sender.sendMessage("/setclose <Menu-Name> <Slot> <true/false>");
                 return true;

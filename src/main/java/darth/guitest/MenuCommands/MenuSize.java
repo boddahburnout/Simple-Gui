@@ -22,6 +22,9 @@ public class MenuSize implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("setsize")) {
+            if (!sender.hasPermission("guitest."+command.getName())) {
+                return true;
+            }
             if (args.length < 2) {
                 sender.sendMessage("/setsize <Menu-Name> <Size>");
                 return true;
