@@ -5,6 +5,7 @@ This Spigot plugin is very new and may have many issues, use at your own discret
 Will update with more info once project is in a more user friendly state
 
 Help Key
+
 <Menu-Name> Name of menu this is synonymous with the key names in the config
 <Size> This is the size of the menu it must be under 54 and divisable by 9
 <ActionType> Thes are commands and menu they specify whether to execute your action as a menu or as a command
