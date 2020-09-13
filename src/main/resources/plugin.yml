@@ -39,4 +39,7 @@ commands:
     usage: /setenchant <Menu-Name> <Slot> <true/false>
   setitemlore:
     description: Set items lore to a specific line on an item
-    usage: /setitemlore
+    usage: /setitemlore <Menu-Name> <Slot> <Line> <Lore>
+  setalias:
+    description: Enable/disable alias usage
+    usage: /setalias <Menu-Name> <true/false>

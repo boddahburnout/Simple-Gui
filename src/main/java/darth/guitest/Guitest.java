@@ -46,6 +46,7 @@ public final class Guitest extends JavaPlugin implements Listener {
         this.getCommand("setenchant").setTabCompleter(new EnchantEffectCompleter());
         this.getCommand("setitemlore").setExecutor(new SetSlotLore());
         this.getCommand("setitemlore").setTabCompleter(new SetSlotLoreCompleter());
+        this.getCommand("setalias").setExecutor(new SetAlias());
         try {
             final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             bukkitCommandMap.setAccessible(true);
@@ -68,6 +69,7 @@ public final class Guitest extends JavaPlugin implements Listener {
             getConfig().addDefault("Test-Menu.contents.2.material", "diamond");
             getConfig().addDefault("Test-Menu.contents.2.itemname", "Test Button");
             getConfig().addDefault("Test-Menu.contents.2.actions.commands", "say hello");
+            getConfig().addDefault("Test-Menu.alias", "Test-Menu");
             getConfig().addDefault("Trigger.playerjoin.Test-Menu", true);
             getConfig().options().copyDefaults(true);
             saveConfig();
@@ -99,6 +101,7 @@ public final class Guitest extends JavaPlugin implements Listener {
         try {
             Enchantment.registerEnchantment(new EnchantEffect(NamespacedKey.minecraft("guienchant")));
         } catch (IllegalArgumentException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }

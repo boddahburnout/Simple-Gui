@@ -4,6 +4,7 @@ import darth.guitest.Guitest;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class SetSlotLoreCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> match = new ArrayList<>();
+        List<String> tab = new ArrayList<>();
         if (command.getName().equalsIgnoreCase("setitemlore")) {
             if (args.length == 1) {
                 Set<String> menus = plugin.getConfig().getKeys(false);

@@ -20,8 +20,12 @@ public class GuiMenu {
     private Guitest plugin = Guitest.getPlugin(Guitest.class);
 
     public Inventory getMenu(String configpath, Player p) {
-        Bukkit.getServer().broadcastMessage(configpath);
-        Inventory inventory = Bukkit.createInventory(null, plugin.getConfig().getInt( configpath + ".size"), configpath.replaceAll("-", " "));
+        Inventory inventory;
+        if (plugin.getConfig().getBoolean(configpath+".enablealias")) {
+            inventory = Bukkit.createInventory(null, plugin.getConfig().getInt( configpath + ".size"), ChatColor.translateAlternateColorCodes('$', plugin.getConfig().getString(configpath+".alias").replaceAll("-", " ")));
+        } else {
+            inventory = Bukkit.createInventory(null, plugin.getConfig().getInt(configpath + ".size"), configpath.replaceAll("-", " "));
+        }
         try {
             if (plugin.getConfig().getConfigurationSection(configpath + ".contents").getKeys(false) != null) {
                 Set<String> test = plugin.getConfig().getConfigurationSection(configpath + ".contents").getKeys(false);

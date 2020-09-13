@@ -26,7 +26,15 @@ public class SetSlotLore implements CommandExecutor {
                 sender.sendMessage("/setitemlore <Menu-Name> <Slot> <line> <loretext>");
                 return true;
             } else {
-                plugin.getConfig().set(args[0]+".contents."+args[1]+".lore."+args[2], args[3]);
+                int i = 0;
+                StringBuilder sb = new StringBuilder();
+                for (String arg : args) {
+                    i = i + 1;
+                    if (i > 4) {
+                        sb.append(arg).append(" ");
+                    }
+                }
+                plugin.getConfig().set(args[0]+".contents."+args[1]+".lore."+args[2], sb.toString());
                 plugin.saveConfig();
                 plugin.reloadConfig();
                 sender.sendMessage("Lore set to item in menu "+ args[0] + " in slot "+ args[1]);

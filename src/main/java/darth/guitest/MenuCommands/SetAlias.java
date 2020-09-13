@@ -5,9 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class CreateMenu implements CommandExecutor {
+public class SetAlias implements CommandExecutor {
     private Guitest plugin = Guitest.getPlugin(Guitest.class);
-
     /**
      * Executes the given command, returning its success.
      * <br>
@@ -22,20 +21,14 @@ public class CreateMenu implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(command.getName().equalsIgnoreCase("createmenu")) {
-            if (!sender.hasPermission("guitest."+command.getName())) {
-                return true;
-            }
+        if (command.getName().equalsIgnoreCase("setalias")) {
             if (args.length < 2) {
-                sender.sendMessage("/createmenu <Menu-Name> <Max-Slots>");
-                return true;
+                sender.sendMessage("/setalias <Menu-Name> <true/false>");
             } else {
-                plugin.getConfig().set(args[0]+".size", Integer.parseInt(args[1]));
-                plugin.getConfig().set(args[0]+".enablealias", false);
-                plugin.getConfig().set(args[0]+".alias", args[0]);
+                plugin.getConfig().set(args[0]+".enablealias", Boolean.parseBoolean(args[1]));
                 plugin.saveConfig();
                 plugin.reloadConfig();
-                sender.sendMessage("Menu Created!");
+                sender.sendMessage("Alias has been set to " + args[1]);
             }
         }
         return true;
