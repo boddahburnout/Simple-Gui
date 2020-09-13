@@ -31,3 +31,5 @@ Commands
 /<Menu-Name> - if player has permission they can open any menu by its name if it was created before the last restart 
 
 /openmenu <Menu-Name> - A player with permission can open any menu by name no restarting needed
+  
+/setitemlore <Menu-Name> <Slot> <Lore Line> <Lore text>
