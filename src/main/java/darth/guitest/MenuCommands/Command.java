@@ -26,7 +26,7 @@ public class Command extends BukkitCommand {
             return true;
         }
         Player p = (Player) sender;
-        p.openInventory(new GuiMenu().getMenu(path));
+        p.openInventory(new GuiMenu().getMenu(path, (Player) sender));
         return true;
     }
 }

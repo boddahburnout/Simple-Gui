@@ -11,36 +11,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MenuActionCompleter implements TabCompleter {
+public class MenuCommandCompleter implements TabCompleter {
     List<String> tab = new ArrayList<>();
     private Guitest plugin = Guitest.getPlugin(Guitest.class);
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> match = new ArrayList<>();
-        if (command.getName().equalsIgnoreCase("setaction")) {
+        if (command.getName().equalsIgnoreCase("openmenu")) {
             if (args.length == 1) {
                 Set<String> menus = plugin.getConfig().getKeys(false);
                 for (String menu : menus) {
                     match.add(menu);
-                }
-            }
-            if (args.length == 2) {
-                Set<String> slots = plugin.getConfig().getConfigurationSection(args[0] + ".contents").getKeys(false);
-                for (String slot : slots) {
-                    match.add(slot);
-                }
-            }
-            if (args.length == 3) {
-                match.add("commands");
-                match.add("menu");
-            }
-            if (args.length == 4) {
-                if (args[2].equalsIgnoreCase("menu")) {
-                    Set<String> menus = plugin.getConfig().getKeys(false);
-                    for (String menu : menus) {
-                        match.add(menu);
-                    }
                 }
             }
             if (sender instanceof Player) {

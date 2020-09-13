@@ -1,6 +1,7 @@
 package darth.guitest.Event;
 
 import darth.guitest.Guitest;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +27,7 @@ public class MenuClick implements Listener {
                     if (plugin.getConfig().getString(e.getView().getTitle().replaceAll(" ", "-") + ".contents." + slot + ".actions.menu") != null) {
                         String menu = plugin.getConfig().getString(e.getView().getTitle().replaceAll(" ", "-") + ".contents." + slot + ".actions.menu");
                         e.getWhoClicked().closeInventory();
-                        e.getWhoClicked().openInventory(new GuiMenu().getMenu(menu));
+                        e.getWhoClicked().openInventory(new GuiMenu().getMenu(menu, p));
                     }
                     if (plugin.getConfig().getBoolean(e.getView().getTitle().replaceAll(" ", "-") + ".contents." + slot + ".close-after-actions")) {
                         e.getWhoClicked().closeInventory();

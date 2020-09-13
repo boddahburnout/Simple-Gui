@@ -1,11 +1,14 @@
 package darth.guitest;
 
+import darth.guitest.Enchant.EnchantEffect;
 import darth.guitest.Event.MenuClick;
 import darth.guitest.MenuCommands.*;
 import darth.guitest.TabComplete.*;
 import darth.guitest.Triggers.PlayerJoin;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandMap;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,6 +40,12 @@ public final class Guitest extends JavaPlugin implements Listener {
         this.getCommand("removecmd").setTabCompleter(new RemoveCmdCompleter());
         this.getCommand("setplayerjoin").setExecutor(new SetPlayerJoin());
         this.getCommand("setplayerjoin").setTabCompleter(new SetPlayerJoinCompleter());
+        this.getCommand("openmenu").setExecutor(new MenuCommand());
+        this.getCommand("openmenu").setTabCompleter(new MenuCommandCompleter());
+        this.getCommand("setenchant").setExecutor(new EnchantEffectCmd());
+        this.getCommand("setenchant").setTabCompleter(new EnchantEffectCompleter());
+        this.getCommand("setitemlore").setExecutor(new SetSlotLore());
+        this.getCommand("setitemlore").setTabCompleter(new SetSlotLoreCompleter());
         try {
             final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             bukkitCommandMap.setAccessible(true);
@@ -50,7 +59,6 @@ public final class Guitest extends JavaPlugin implements Listener {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        this.getCommand("openmenu").setExecutor(new MenuCommand());
         if (!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
@@ -67,10 +75,32 @@ public final class Guitest extends JavaPlugin implements Listener {
             saveConfig();
             reloadConfig();
         }
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            Bukkit.getPluginManager().registerEvents(this, this);
+        } else {
+            Bukkit.broadcastMessage("Could not find PlaceholderAPI! This plugin is required.");
+        }
+        registerEnchantEffect();
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public void registerEnchantEffect() {
+        try {
+            Field f = Enchantment.class.getDeclaredField("acceptingNew");
+            f.setAccessible(true);
+            f.set(null, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Enchantment.registerEnchantment(new EnchantEffect(NamespacedKey.minecraft("guienchant")));
+        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

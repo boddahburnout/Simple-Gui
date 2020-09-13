@@ -16,7 +16,7 @@ public class PlayerJoin implements Listener {
         Set<String> keys = plugin.getConfig().getConfigurationSection("Trigger.playerjoin").getKeys(false);
         for (String menu : keys) {
             if (plugin.getConfig().getBoolean("Trigger.playerjoin." + menu)) {
-                e.getPlayer().openInventory(new GuiMenu().getMenu(menu));
+                e.getPlayer().openInventory(new GuiMenu().getMenu(menu, e.getPlayer()));
             }
         }
     }

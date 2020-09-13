@@ -39,7 +39,7 @@ public class MenuCommand implements CommandExecutor {
                 }
                 Player p = (Player) sender;
                 try {
-                    p.getPlayer().openInventory(new GuiMenu().getMenu(args[0]));
+                    p.getPlayer().openInventory(new GuiMenu().getMenu(args[0], p));
                 } catch (IllegalArgumentException e) {
                     p.sendMessage("Menu not found!");
                 }

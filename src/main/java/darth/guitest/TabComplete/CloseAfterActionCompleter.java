@@ -1,6 +1,7 @@
 package darth.guitest.TabComplete;
 
 import darth.guitest.Guitest;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -21,7 +22,7 @@ public class CloseAfterActionCompleter implements TabCompleter {
             if (args.length == 1) {
                 Set<String> menus = plugin.getConfig().getKeys(false);
                 for (String menu : menus) {
-                    match.add(menu);
+                    match.add(ChatColor.stripColor(menu));
                 }
             }
             if (args.length == 2) {

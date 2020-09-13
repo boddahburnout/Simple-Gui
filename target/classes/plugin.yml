@@ -2,6 +2,7 @@ name: Guitest
 version: 1.0-SNAPSHOT
 main: darth.guitest.Guitest
 api-version: 1.16
+softdepend: [PlaceholderAPI]
 commands:
   openmenu:
     description: Open a menu defined in config
@@ -33,3 +34,9 @@ commands:
   setplayerjoin:
     description: Set a menu to open on player join
     usage: /setplayerjoin <Menu-Name> <true/false>
+  setenchant:
+    description: set a item slot to have an enchant effect added
+    usage: /setenchant <Menu-Name> <Slot> <true/false>
+  setitemlore:
+    description: Set items lore to a specific line on an item
+    usage: /setitemlore
