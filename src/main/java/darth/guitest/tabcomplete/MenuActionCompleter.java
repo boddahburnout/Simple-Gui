@@ -33,6 +33,7 @@ public class MenuActionCompleter implements TabCompleter {
             if (args.length == 3) {
                 match.add("commands");
                 match.add("menu");
+                match.add("close");
             }
             if (args.length == 4) {
                 if (args[2].equalsIgnoreCase("menu")) {
@@ -40,6 +41,10 @@ public class MenuActionCompleter implements TabCompleter {
                     for (String menu : menus) {
                         match.add(menu);
                     }
+                }
+                if (args[2].equalsIgnoreCase("close")) {
+                    match.add("true");
+                    match.add("false");
                 }
             }
             if (sender instanceof Player) {

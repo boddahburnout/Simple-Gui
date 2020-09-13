@@ -38,9 +38,11 @@ public class ItemSet implements CommandExecutor {
                 ItemMeta itemMeta = item.getItemMeta();
                 List<String> meta = itemMeta.getLore();
                 int i = 0;
-                for (String line : meta) {
-                    i = i + 1;
-                    plugin.getConfig().set(args[0]+".contents."+args[1]+".lore."+i, line);
+                if (!meta.isEmpty()) {
+                    for (String line : meta) {
+                        i = i + 1;
+                        plugin.getConfig().set(args[0] + ".contents." + args[1] + ".lore." + i, line);
+                    }
                 }
                 plugin.getConfig().set(args[0] + ".contents."+args[1]+".material", item.getType().name());
                 plugin.getConfig().set(args[0] + ".contents."+args[1]+".itemname", item.getItemMeta().getDisplayName());

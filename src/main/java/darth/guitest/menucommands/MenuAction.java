@@ -37,9 +37,14 @@ public class MenuAction implements CommandExecutor {
                         sb.append(arg).append(" ");
                     }
                 }
-                if (!args[2].equalsIgnoreCase("commands") || !args[2].equalsIgnoreCase("menu")) {
+                if (!args[2].equalsIgnoreCase("commands") || !args[2].equalsIgnoreCase("menu") || !args[2].equalsIgnoreCase("close")) {
                     sender.sendMessage(ChatColor.RED+"You must select a valid action!");
                     return true;
+                }
+                if (args[2].equalsIgnoreCase("close")) {
+                    if (!args[3].equalsIgnoreCase("false") || !args[3].equalsIgnoreCase("true")) {
+                        sender.sendMessage(ChatColor.RED+ "Close must be set to true/false!");
+                    }
                 }
                 plugin.getConfig().set(args[0] + ".contents." + args[1] + ".actions." + args[2], sb.toString().trim());
                 sender.sendMessage("Action set!");
