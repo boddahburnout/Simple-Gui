@@ -40,6 +40,6 @@ commands:
   setitemlore:
     description: Set items lore to a specific line on an item
     usage: /setitemlore <Menu-Name> <Slot> <Line> <Lore>
-  setalias:
-    description: Enable/disable alias usage
-    usage: /setalias <Menu-Name> <true/false>
+  menualias:
+    description: Enable/disable alias and set the alias
+    usage: /setalias <Menu-Name> <set/enabled> <true/falsetext>

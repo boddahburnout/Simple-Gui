@@ -1,10 +1,10 @@
 package darth.guitest;
 
 import darth.guitest.Enchant.EnchantEffect;
-import darth.guitest.Event.MenuClick;
-import darth.guitest.MenuCommands.*;
-import darth.guitest.TabComplete.*;
-import darth.guitest.Triggers.PlayerJoin;
+import darth.guitest.event.MenuClick;
+import darth.guitest.menucommands.*;
+import darth.guitest.tabcomplete.*;
+import darth.guitest.triggers.PlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandMap;
@@ -46,7 +46,8 @@ public final class Guitest extends JavaPlugin implements Listener {
         this.getCommand("setenchant").setTabCompleter(new EnchantEffectCompleter());
         this.getCommand("setitemlore").setExecutor(new SetSlotLore());
         this.getCommand("setitemlore").setTabCompleter(new SetSlotLoreCompleter());
-        this.getCommand("setalias").setExecutor(new SetAlias());
+        this.getCommand("menualias").setExecutor(new MenuAlias());
+        this.getCommand("menualias").setTabCompleter(new MenuAliasCompleter());
         try {
             final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             bukkitCommandMap.setAccessible(true);
@@ -81,6 +82,7 @@ public final class Guitest extends JavaPlugin implements Listener {
             Bukkit.getPluginManager().registerEvents(this, this);
         } else {
             Bukkit.broadcastMessage("Could not find PlaceholderAPI! This plugin is required.");
+            Bukkit.getPluginManager().disablePlugin(this);
         }
         registerEnchantEffect();
     }
